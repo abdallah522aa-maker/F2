@@ -475,4 +475,61 @@ local function setupPageContent(targetPage, enableRemotes, isMysteryMode)
     SpeedBox.ClearTextOnFocus = false
     SpeedBox.TextXAlignment = Enum.TextXAlignment.Center
     SpeedBox.ZIndex = 4
-    SpeedBox.ClipsDescendants
+    SpeedBox.ClipsDescendants = true
+    SpeedBox.TextTruncate = Enum.TextTruncate.AtEnd
+
+    Instance.new("UICorner", SpeedBox).CornerRadius = UDim.new(0, 8)
+
+    local CopyPublicBtn = Instance.new("TextButton", targetPage)
+    CopyPublicBtn.Name = "CopyPublicBtn"
+    CopyPublicBtn.Size = UDim2.new(0.46, 0, 0, 32)
+    CopyPublicBtn.Position = UDim2.new(0.02, 0, posY_row2, 0)
+    CopyPublicBtn.BackgroundColor3 = Color3.fromRGB(230, 40, 40)
+    CopyPublicBtn.Text = "نسخ عام"
+    CopyPublicBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CopyPublicBtn.Font = Enum.Font.GothamBold
+    CopyPublicBtn.TextSize = 15
+    CopyPublicBtn.TextStrokeTransparency = 1
+    CopyPublicBtn.ZIndex = 4
+
+    Instance.new("UICorner", CopyPublicBtn).CornerRadius = UDim.new(0, 8)
+
+    local CopyHiddenBtn = Instance.new("TextButton", targetPage)
+    CopyHiddenBtn.Name = "CopyHiddenBtn"
+    CopyHiddenBtn.Size = UDim2.new(0.52, 0, 0, 32)
+    CopyHiddenBtn.Position = UDim2.new(0.52, 0, posY_row2, 0)
+    CopyHiddenBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    CopyHiddenBtn.Text = "نسخ مخفي"
+    CopyHiddenBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CopyHiddenBtn.Font = Enum.Font.GothamBold
+    CopyHiddenBtn.TextSize = 15
+    CopyHiddenBtn.ZIndex = 4
+
+    Instance.new("UICorner", CopyHiddenBtn).CornerRadius = UDim.new(0, 8)
+
+    local isPublicMode = true
+
+    CopyPublicBtn.MouseButton1Click:Connect(function()
+        CopyPublicBtn.BackgroundColor3 = Color3.fromRGB(230, 40, 40)
+        CopyHiddenBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        isPublicMode = true
+    end)
+
+    CopyHiddenBtn.MouseButton1Click:Connect(function()
+        CopyHiddenBtn.BackgroundColor3 = Color3.fromRGB(230, 40, 40)
+        CopyPublicBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        isPublicMode = false
+    end)
+
+    if isMysteryMode then
+        local ExcludeBtn = Instance.new("TextButton", targetPage)
+        ExcludeBtn.Name = "ExcludeBtn"
+        ExcludeBtn.Size = UDim2.new(0.96, 0, 0, 32)
+        ExcludeBtn.Position = UDim2.new(0.02, 0, 0.45, 0)
+        ExcludeBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        ExcludeBtn.Text = "استبعاد شخص من النسخ"
+        ExcludeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ExcludeBtn.Font = Enum.Font.GothamBold
+        ExcludeBtn.TextSize = 15
+        ExcludeBtn.TextStrokeTransparency = 1
+        ExcludeBtn.ZIndex
